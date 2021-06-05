@@ -11,7 +11,7 @@ var distance=0;
 function preload(){
   pathImg = loadImage("images/Road.png");
   mainRacerImg1 = loadAnimation("images/mainPlayer1.png","images/mainPlayer2.png");
-  mainRacerImg2= loadAnimation("images/mainPlayer3.png");
+  mainRacerImg2= loadImage("images/mainPlayer3.png");
   pinkCyclistimage=loadAnimation("images/opponent1.png","images/opponent2.png");
 
 }
@@ -59,12 +59,11 @@ function draw() {
   }
 
   if(PCgroup.isTouching(mainCyclist)){
-    gameState===END
+    gameState=END
   }
 
   else if (gameState===END){
-    mainCyclist.destroy();
-    PCgroup.destroyEach();
+    mainCyclist.addImage(mainRacerImg2);
     path.velocity=0
     if(keyDown("up")){
     reset();
@@ -87,7 +86,7 @@ function createPink (){
 }
 
 function reset(){
-  gameState===PLAY
+  gameState=PLAY
   gameOver.visible=false
   mainCyclist.addAnimation(mainRacerImg3)
   PCgroup.destroyEach();
